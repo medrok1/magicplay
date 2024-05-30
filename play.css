@@ -3,8 +3,8 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Ensure the body fills the viewport height */
-    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -14,9 +14,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    overflow: auto; /* Enable scrolling for the container */
-    height: 90vh; /* Adjust the height to leave space for the controls */
-    margin: auto; /* Center the container */
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -26,8 +27,9 @@ h1 {
 .controls {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #upload-deck {
@@ -57,6 +59,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
+    margin-bottom: 20px; /* Ensure some space above controls */
 }
 
 .card {
@@ -67,7 +70,7 @@ h1 {
     border-radius: 8px;
     cursor: pointer;
     position: relative;
-    transition: transform 0.3s ease; /* Smooth rotation transition */
+    transition: transform 0.3s ease;
 }
 
 .card img {
@@ -90,13 +93,13 @@ h1 {
     display: none;
 }
 
-
 .playing-field {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: 2000; /* Enable vertical scrolling */
-    position: relative; /* Ensure that absolutely positioned elements are relative to this */
-    margin-top: 20px; /* Add some space between the deck area and the playing field */
+    height: 1200px;
+    overflow-y: 2000;
+    position: relative;
+    margin-top: 20px;
+    flex-grow: 1; /* Ensure it grows to fill the space */
 }
