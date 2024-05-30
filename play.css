@@ -15,7 +15,7 @@ body {
     width: 80%;
     max-width: 1200px;
     margin: auto;
-    height: 200%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -36,13 +36,6 @@ h1 {
     padding: 10px;
 }
 
-.deck-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-}
-
 #deck {
     width: 150px;
     height: 210px;
@@ -58,7 +51,6 @@ h1 {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
-    flex-grow: 1;
     margin-bottom: 20px; /* Ensure some space above controls */
 }
 
@@ -97,8 +89,8 @@ h1 {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1500px;
-    overflow-y: 2300;
+    height: 1200px; /* Increased height */
+    overflow-y: auto;
     position: relative;
     margin-top: 20px;
 }
