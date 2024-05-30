@@ -14,7 +14,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    overflow: 2000; /* Enable scrolling for the container */
+    overflow: auto; /* Enable scrolling for the container */
     height: 90vh; /* Adjust the height to leave space for the controls */
     margin: auto; /* Center the container */
 }
@@ -47,4 +47,55 @@ h1 {
     background-image: url('mtg_card_back.jpg');
     background-size: cover;
     border: 1px solid #ccc;
-    border-radius
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.hand {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.card {
+    width: 150px;
+    height: 210px;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease; /* Smooth rotation transition */
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.card.flipped {
+    background-image: url('mtg_card_back.jpg');
+    background-size: cover;
+}
+
+.card:not(.flipped) img {
+    display: block;
+}
+
+.card.flipped img {
+    display: none;
+}
+
+.playing-field {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative; /* Ensure that absolutely positioned elements are relative to this */
+    margin-top: 20px; /* Add some space between the deck area and the playing field */
+}
