@@ -70,6 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.button === 2) return; // Ignore right click for dragging
             draggedCard = cardElement;
         });
+        cardElement.addEventListener("dblclick", () => {
+            if (cardElement.style.transform === "rotate(90deg)") {
+                cardElement.style.transform = "rotate(0deg)";
+            } else {
+                cardElement.style.transform = "rotate(90deg)";
+            }
+        });
         handElement.appendChild(cardElement);
     }
 
