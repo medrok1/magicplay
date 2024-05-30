@@ -36,9 +36,8 @@ h1 {
 
 .deck-area {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
+    flex-direction: column-reverse; /* Display deck at the bottom */
+    align-items: center; /* Center align the controls */
 }
 
 #deck {
