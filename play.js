@@ -4,10 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const deckElement = document.getElementById("deck");
     const handElement = document.getElementById("hand");
     const playingField = document.getElementById("playing-field");
+    const dice = document.querySelectorAll(".die");
 
     let deck = [];
     let hand = [];
     let draggedCard = null;
+    let draggedDie = null;
 
     async function loadDeck(event) {
         hand = [];
@@ -70,13 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.button === 2) return; // Ignore right click for dragging
             draggedCard = cardElement;
         });
-        cardElement.addEventListener("dblclick", () => {
-            if (cardElement.style.transform === "rotate(90deg)") {
-                cardElement.style.transform = "rotate(0deg)";
-            } else {
-                cardElement.style.transform = "rotate(90deg)";
-            }
-        });
         handElement.appendChild(cardElement);
     }
 
@@ -93,8 +88,33 @@ document.addEventListener("DOMContentLoaded", () => {
             draggedCard.style.top = `${e.clientY - rect.top - 105}px`; // Adjust for card height
             playingField.appendChild(draggedCard);
             draggedCard = null;
+        } else if (draggedDie) {
+            const rect = playingField.getBoundingClientRect();
+            draggedDie.style.position = "absolute";
+            draggedDie.style.left = `${e.clientX - rect.left - 25}px`; // Adjust for die width
+            draggedDie.style.top = `${e.clientY - rect.top - 25}px`; // Adjust for die height
+            playingField.appendChild(draggedDie);
+            draggedDie = null;
         }
     }
+
+    function rollDie(die) {
+        const value = parseInt(prompt(`Enter a value for the d${die.getAttribute("value")}`));
+        if (!isNaN(value) && value > 0 && value <= parseInt(die.getAttribute("value"))) {
+            die.setAttribute("value", value);
+        } else {
+            alert("Invalid value! Please enter a number between 1 and the die's maximum value.");
+        }
+    }
+
+    dice.forEach(die => {
+        die.addEventListener("click", () => {
+            rollDie(die);
+        });
+        die.addEventListener("mousedown", () => {
+            draggedDie = die;
+        });
+    });
 
     uploadDeckInput.addEventListener("change", loadDeck);
     drawCardButton.addEventListener("click", drawCard);
