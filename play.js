@@ -3,11 +3,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const drawCardButton = document.getElementById("draw-card");
     const deckElement = document.getElementById("deck");
     const handElement = document.getElementById("hand");
+    const playingField = document.getElementById("playing-field");
 
     let deck = [];
     let hand = [];
 
     async function loadDeck(event) {
+        hand = [];
+        handElement.innerHTML = "";
+        playingField.innerHTML = "";
+        
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
