@@ -88,3 +88,11 @@ h1 {
 .card.flipped img {
     display: none;
 }
+
+.playing-field {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
