@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Deck Simulator</title>
+    <link rel="stylesheet" href="play.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MTG Deck Simulator</h1>
+        <div class="controls">
+            <input type="file" id="upload-deck" accept=".json">
+            <button id="draw-card">Draw Card</button>
+        </div>
+        <div class="deck-area">
+            <div id="deck" class="card"></div>
+            <div id="hand" class="hand"></div>
+        </div>
+    </div>
+    <script src="play.js"></script>
+</body>
+</html>
