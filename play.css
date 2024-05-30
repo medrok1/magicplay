@@ -93,6 +93,6 @@ h1 {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 600px; /* Set a fixed height for the playing field */
-    overflow-y: auto; /* Enable vertical scrolling */
+    height: 1200px; /* Set a fixed height for the playing field */
+    overflow-y: 1500; /* Enable vertical scrolling */
 }
