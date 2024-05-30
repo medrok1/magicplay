@@ -70,35 +70,4 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.button === 2) return; // Ignore right click for dragging
             draggedCard = cardElement;
         });
-        cardElement.addEventListener("dblclick", () => {
-            if (cardElement.style.transform === "rotate(90deg)") {
-                cardElement.style.transform = "rotate(0deg)";
-            } else {
-                cardElement.style.transform = "rotate(90deg)";
-            }
-        });
-        handElement.appendChild(cardElement);
-    }
-
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
-
-    function handleDrop(e) {
-        e.preventDefault();
-        if (draggedCard) {
-            const rect = playingField.getBoundingClientRect();
-            draggedCard.style.position = "absolute";
-            draggedCard.style.left = `${e.clientX - rect.left - 75}px`; // Adjust for card width
-            draggedCard.style.top = `${e.clientY - rect.top - 105}px`; // Adjust for card height
-            playingField.appendChild(draggedCard);
-            draggedCard = null;
-        }
-    }
-
-    uploadDeckInput.addEventListener("change", loadDeck);
-    drawCardButton.addEventListener("click", drawCard);
-    deckElement.addEventListener("click", drawCard);
-    playingField.addEventListener("dragover", handleDragOver);
-    playingField.addEventListener("drop", handleDrop);
-});
+        cardElement
