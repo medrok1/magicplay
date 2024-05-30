@@ -14,7 +14,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    overflow: auto; /* Enable scrolling for the container */
+    overflow: 2000; /* Enable scrolling for the container */
     height: 90vh; /* Adjust the height to leave space for the controls */
     margin: auto; /* Center the container */
 }
