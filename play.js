@@ -64,6 +64,14 @@ document.addEventListener("DOMContentLoaded", () => {
         cardElement.addEventListener("contextmenu", (e) => {
             e.preventDefault();
             cardElement.classList.toggle("flipped");
+           
+            /* Update the dragend event listener to calculate position within the playing field */
+cardElement.addEventListener("dragend", (e) => {
+    const rect = playingField.getBoundingClientRect(); // Get the bounding rectangle of the playing field
+    cardElement.style.left = `${e.clientX - rect.left - 75}px`; // Update card position based on client coordinates and offset of the playing field
+    cardElement.style.top = `${e.clientY - rect.top - 105}px`;
+});
+
         });
         cardElement.addEventListener("mousedown", (e) => {
             if (e.button === 2) return; // Ignore right click for dragging
