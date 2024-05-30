@@ -7,17 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let deck = [];
     let hand = [];
 
-    function loadDeck(event) {
+    async function loadDeck(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = (e) => {
-                deck = JSON.parse(e.target.result);
+            reader.onload = async (e) => {
+                const deckList = JSON.parse(e.target.result);
+                deck = await fetchCardDetails(deckList);
                 shuffleDeck();
                 drawInitialHand();
             };
             reader.readAsText(file);
         }
+    }
+
+    async function fetchCardDetails(deckList) {
+        const cardPromises = deckList.map(card => 
+            fetch(`https://api.scryfall.com/cards/named?exact=${encodeURIComponent(card.name)}`)
+            .then(response => response.json())
+        );
+        return Promise.all(cardPromises);
     }
 
     function shuffleDeck() {
