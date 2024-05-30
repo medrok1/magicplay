@@ -95,7 +95,7 @@ h1 {
     padding: 20px;
     border-radius: 8px;
     height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: scroll; /* Enable vertical scrolling */
+    overflow-y: 2000; /* Enable vertical scrolling */
     position: relative;
     flex-grow: 1; /* Allow playing field to grow and take available space */
 }
