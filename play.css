@@ -3,10 +3,8 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 100vh; /* Ensure the body fills the viewport height */
+    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
 }
 
 .container {
@@ -16,7 +14,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    overflow: hidden;
+    overflow: auto; /* Enable scrolling for the container */
+    height: 90vh; /* Adjust the height to leave space for the controls */
+    margin: auto; /* Center the container */
 }
 
 h1 {
@@ -94,5 +94,5 @@ h1 {
     padding: 20px;
     border-radius: 8px;
     height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: 1500; /* Enable vertical scrolling */
+    overflow-y: 2000; /* Enable vertical scrolling */
 }
