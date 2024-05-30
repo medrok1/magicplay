@@ -3,8 +3,8 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Ensure the body fills the viewport height */
-    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -14,9 +14,11 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    overflow: auto; /* Enable scrolling for the container */
-    height: 90vh; /* Adjust the height to leave space for the controls */
-    margin: auto; /* Center the container */
+    height: 100vh;
+    overflow: hidden;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -36,8 +38,8 @@ h1 {
 
 .deck-area {
     display: flex;
-    flex-direction: column-reverse; /* Display deck at the bottom */
-    align-items: center; /* Center align the controls */
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
 #deck {
@@ -65,7 +67,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 8px;
     cursor: pointer;
-    position: relative;
+    position: absolute; /* Use absolute positioning */
 }
 
 .card img {
@@ -88,22 +90,12 @@ h1 {
     display: none;
 }
 
-/* Remove position:relative from .card */
-.card {
-    width: 150px;
-    height: 210px;
-    background-size: cover;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-    /* position: relative; Remove this line */
-}
-
-
 .playing-field {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: 2000; /* Enable vertical scrolling */
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative;
+    flex-grow: 1; /* Allow playing field to grow and take available space */
 }
