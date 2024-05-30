@@ -9,13 +9,15 @@
 <body>
     <div class="container">
         <h1>MTG Deck Simulator</h1>
+        <div class="deck-area">
+            <div id="deck" class="card"></div>
+            <div class="controls">
+                <input type="file" id="upload-deck" accept=".json">
+                <button id="draw-card">Draw Card</button>
+            </div>
+        </div>
         <div class="playing-field" id="playing-field"></div>
         <div class="hand" id="hand"></div>
-        <div class="controls">
-            <div id="deck" class="card"></div>
-            <button id="draw-card">Draw Card</button>
-            <input type="file" id="upload-deck" accept=".json">
-        </div>
     </div>
     <script src="play.js"></script>
 </body>
