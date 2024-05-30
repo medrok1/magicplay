@@ -4,7 +4,6 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh; /* Ensure the body fills the viewport height */
-    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
 }
 
 .container {
