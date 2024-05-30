@@ -95,4 +95,5 @@ h1 {
     border-radius: 8px;
     height: 1200px; /* Set a fixed height for the playing field */
     overflow-y: 2000; /* Enable vertical scrolling */
+    position: relative; /* Ensure that absolutely positioned elements are relative to this */
 }
