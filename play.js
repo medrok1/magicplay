@@ -48,14 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawCard() {
-        if (deck.length > 0 && hand.length < 7) {
+        if (deck.length > 0) {
             const card = deck.pop();
             hand.push(card);
             addCardToHand(card);
-        } else if (deck.length === 0) {
-            alert("Deck is empty!");
         } else {
-            alert("Hand is full!");
+            alert("Deck is empty!");
         }
     }
 
