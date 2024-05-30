@@ -36,6 +36,13 @@ h1 {
     padding: 10px;
 }
 
+.deck-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
 #deck {
     width: 150px;
     height: 210px;
