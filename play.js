@@ -72,14 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.dataTransfer.setData("text/plain", null); // Required for Firefox
             });
         });
-        cardElement.addEventListener("dragend", (e) => {
-            cardElement.style.left = `${e.clientX - 75}px`; // Update card position based on client coordinates
-            cardElement.style.top = `${e.clientY - 105}px`;
-        });
         handElement.appendChild(cardElement);
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        const cardElement = document.querySelector(".card[draggable='true']");
+        cardElement.draggable = false;
+        cardElement.style.position = "absolute";
+        cardElement.style.left = `${e.pageX - 75}px`; // Center the card at the cursor
+        cardElement.style.top = `${e.pageY - 105}px`;
+        playingField.appendChild(cardElement);
     }
 
     uploadDeckInput.addEventListener("change", loadDeck);
     drawCardButton.addEventListener("click", drawCard);
     deckElement.addEventListener("click", drawCard);
+    playingField.addEventListener("dragover", handleDragOver);
+    playingField.addEventListener("drop", handleDrop);
 });
