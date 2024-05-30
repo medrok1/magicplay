@@ -93,7 +93,8 @@ h1 {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: 2000; /* Enable vertical scrolling */
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
     position: relative; /* Ensure that absolutely positioned elements are relative to this */
+    margin-top: 20px; /* Add some space between the deck area and the playing field */
 }
