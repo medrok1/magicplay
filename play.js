@@ -73,8 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
         cardElement.addEventListener("dragend", (e) => {
-            cardElement.style.left = `${e.clientX - 75}px`; // Update card position based on client coordinates
-            cardElement.style.top = `${e.clientY - 105}px`;
+            const rect = playingField.getBoundingClientRect(); // Get the bounding rectangle of the playing field
+            cardElement.style.left = `${e.clientX - rect.left - 75}px`; // Update card position based on client coordinates and offset of the playing field
+            cardElement.style.top = `${e.clientY - rect.top - 105}px`;
         });
         handElement.appendChild(cardElement);
     }
