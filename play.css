@@ -101,5 +101,4 @@ h1 {
     overflow-y: 2000;
     position: relative;
     margin-top: 20px;
-    flex-grow: 1; /* Ensure it grows to fill the space */
 }
