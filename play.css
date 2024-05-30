@@ -1,104 +1,101 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const uploadDeckInput = document.getElementById("upload-deck");
-    const drawCardButton = document.getElementById("draw-card");
-    const deckElement = document.getElementById("deck");
-    const handElement = document.getElementById("hand");
-    const playingField = document.getElementById("playing-field");
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Ensure the body fills the viewport height */
+    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
+}
 
-    let deck = [];
-    let hand = [];
-    let draggedCard = null;
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    overflow: auto; /* Enable scrolling for the container */
+    height: 90vh; /* Adjust the height to leave space for the controls */
+    margin: auto; /* Center the container */
+}
 
-    async function loadDeck(event) {
-        hand = [];
-        handElement.innerHTML = "";
-        playingField.innerHTML = "";
-        
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                const deckList = JSON.parse(e.target.result);
-                deck = await fetchCardDetails(deckList);
-                shuffleDeck();
-                drawInitialHand();
-            };
-            reader.readAsText(file);
-        }
-    }
+h1 {
+    text-align: center;
+}
 
-    async function fetchCardDetails(deckList) {
-        const cardPromises = deckList.map(card => 
-            fetch(`https://api.scryfall.com/cards/named?exact=${encodeURIComponent(card.name)}`)
-            .then(response => response.json())
-        );
-        return Promise.all(cardPromises);
-    }
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
-    function shuffleDeck() {
-        for (let i = deck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [deck[i], deck[j]] = [deck[j], deck[i]];
-        }
-    }
+#upload-deck {
+    padding: 10px;
+}
 
-    function drawInitialHand() {
-        for (let i = 0; i < 7; i++) {
-            drawCard();
-        }
-    }
+.deck-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
 
-    function drawCard() {
-        if (deck.length > 0) {
-            const card = deck.pop();
-            hand.push(card);
-            addCardToHand(card);
-        } else {
-            alert("Deck is empty!");
-        }
-    }
+#deck {
+    width: 150px;
+    height: 210px;
+    background-image: url('mtg_card_back.jpg');
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-    function addCardToHand(card) {
-        const cardElement = document.createElement("div");
-        cardElement.className = "card";
-        cardElement.innerHTML = `<img src="${card.image_uris.small}" alt="${card.name}">`;
-        cardElement.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            cardElement.classList.toggle("flipped");
-        });
-        cardElement.addEventListener("mousedown", (e) => {
-            if (e.button === 2) return; // Ignore right click for dragging
-            draggedCard = cardElement;
-        });
-        cardElement.addEventListener("dblclick", () => {
-            if (cardElement.style.transform === "rotate(90deg)") {
-                cardElement.style.transform = "rotate(0deg)";
-            } else {
-                cardElement.style.transform = "rotate(90deg)";
-            }
-        });
-        handElement.appendChild(cardElement);
-    }
+.hand {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+}
 
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
+.card {
+    width: 150px;
+    height: 210px;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease; /* Smooth rotation transition */
+}
 
-    function handleDrop(e) {
-        e.preventDefault();
-        if (draggedCard) {
-            const rect = playingField.getBoundingClientRect();
-            draggedCard.style.position = "absolute";
-            draggedCard.style.left = `${e.clientX - rect.left - 75}px`; // Adjust for card width
-            draggedCard.style.top = `${e.clientY - rect.top - 105}px`; // Adjust for card height
-            playingField.appendChild(draggedCard);
-            draggedCard = null;
-        }
-    }
+.card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+}
 
-    uploadDeckInput.addEventListener("change", loadDeck);
-    drawCardButton.addEventListener("click", drawCard);
-    deckElement.addEventListener("click", drawCard);
-    playingField.addEventListener("dragover", handleDragOver);
-    playingField.addEventListener("drop", handleDrop);
-});
+.card.flipped {
+    background-image: url('mtg_card_back.jpg');
+    background-size: cover;
+}
+
+.card:not(.flipped) img {
+    display: block;
+}
+
+.card.flipped img {
+    display: none;
+}
+
+.playing-field {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative; /* Ensure that absolutely positioned elements are relative to this */
+    margin-top: 20px; /* Add some space between the deck area and the playing field */
+}
