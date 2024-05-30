@@ -88,6 +88,29 @@ h1 {
     display: none;
 }
 
+/* Remove position:relative from .card */
+.card {
+    width: 150px;
+    height: 210px;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    /* position: relative; Remove this line */
+}
+
+/* Add new styles for the playing field */
+.playing-field {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: fixed; /* Fix the position of the playing field */
+    bottom: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+}
+
 .playing-field {
     background-color: #1a1a1a;
     padding: 20px;
