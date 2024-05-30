@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.onload = async (e) => {
                 try {
                     const deckList = JSON.parse(e.target.result);
+                    console.log('Deck List:', deckList);
                     deck = await fetchCardDetails(deckList);
-                    console.log('Deck loaded:', deck);
+                    console.log('Fetched Deck:', deck);
                     shuffleDeck();
                     drawInitialHand();
                 } catch (error) {
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function drawCard() {
         if (deck.length > 0) {
             const card = deck.pop();
+            console.log('Drawing card:', card);
             hand.push(card);
             addCardToHand(card);
         } else {
