@@ -3,8 +3,8 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    height: 100vh;
-    overflow: hidden;
+    height: 100vh; /* Ensure the body fills the viewport height */
+    overflow: hidden; /* Hide overflow to prevent scrollbars on the body */
 }
 
 .container {
@@ -14,11 +14,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
-    height: 100vh;
-    overflow: hidden;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
+    overflow: auto; /* Enable scrolling for the container */
+    height: 90vh; /* Adjust the height to leave space for the controls */
+    margin: auto; /* Center the container */
 }
 
 h1 {
@@ -38,8 +36,9 @@ h1 {
 
 .deck-area {
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 #deck {
@@ -67,7 +66,7 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 8px;
     cursor: pointer;
-    position: absolute; /* Use absolute positioning */
+    position: relative;
 }
 
 .card img {
@@ -94,8 +93,6 @@ h1 {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1200px; /* Set a fixed height for the playing field */
-    overflow-y: scroll; /* Enable vertical scrolling */
-    position: relative;
-    flex-grow: 1; /* Allow playing field to grow and take available space */
+    height: 600px; /* Set a fixed height for the playing field */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
