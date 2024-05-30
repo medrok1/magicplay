@@ -65,4 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             cardElement.classList.toggle("flipped");
         });
-        cardElement.addEventListener("mousedown", (e)
+        cardElement.addEventListener("mousedown", (e) => {
+            if (e.button === 2) return; // Ignore right click for dragging
+            cardElement.draggable = true;
+            cardElement.addEventListener("dragstart", (e) => {
+                e.dataTransfer.setData("text/plain", null); // Required for Firefox
+            });
+        });
+        cardElement.addEventListener("dragend", (e) => {
+            cardElement.style.position = "absolute";
+            cardElement.style.left = `${e.pageX - 75}px`; // Center the card at the cursor
+            cardElement.style.top = `${e.pageY - 105}px`;
+        });
+        handElement.appendChild(cardElement);
+    }
+
+    uploadDeckInput.addEventListener("change", loadDeck);
+    drawCardButton.addEventListener("click", drawCard);
+    deckElement.addEventListener("click", drawCard);
+});
