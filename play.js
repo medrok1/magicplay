@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let deck = [];
     let hand = [];
+    let draggedCard = null;
 
     async function loadDeck(event) {
         hand = [];
@@ -67,10 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         cardElement.addEventListener("mousedown", (e) => {
             if (e.button === 2) return; // Ignore right click for dragging
-            cardElement.draggable = true;
-            cardElement.addEventListener("dragstart", (e) => {
-                e.dataTransfer.setData("text/plain", null); // Required for Firefox
-            });
+            draggedCard = cardElement;
         });
         handElement.appendChild(cardElement);
     }
@@ -81,12 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleDrop(e) {
         e.preventDefault();
-        const cardElement = document.querySelector(".card[draggable='true']");
-        cardElement.draggable = false;
-        cardElement.style.position = "absolute";
-        cardElement.style.left = `${e.pageX - 75}px`; // Center the card at the cursor
-        cardElement.style.top = `${e.pageY - 105}px`;
-        playingField.appendChild(cardElement);
+        if (draggedCard) {
+            const rect = playingField.getBoundingClientRect();
+            draggedCard.style.position = "absolute";
+            draggedCard.style.left = `${e.clientX - rect.left - 75}px`; // Adjust for card width
+            draggedCard.style.top = `${e.clientY - rect.top - 105}px`; // Adjust for card height
+            playingField.appendChild(draggedCard);
+            draggedCard = null;
+        }
     }
 
     uploadDeckInput.addEventListener("change", loadDeck);
