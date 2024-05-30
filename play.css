@@ -97,8 +97,8 @@ h1 {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 8px;
-    height: 1200px;
-    overflow-y: 2000;
+    height: 1500px;
+    overflow-y: 2300;
     position: relative;
     margin-top: 20px;
     flex-grow: 1; /* Ensure it grows to fill the space */
